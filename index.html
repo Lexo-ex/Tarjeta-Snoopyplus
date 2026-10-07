@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarjeta Digital VIP - Snoopy Plus</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .loyalty-card {
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      border: 1px solid #334155;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 420px;
+      padding: 24px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .brand-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .badge-vip {
+      background: linear-gradient(90deg, #f59e0b, #d97706);
+      color: #000;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+      margin-top: 6px;
+    }
+
+    .client-info {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .client-info p {
+      margin-bottom: 4px;
+      color: var(--text-muted);
+    }
+
+    .client-info span {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .progress-section {
+      margin-bottom: 20px;
+    }
+
+    .progress-bar-bg {
+      background: #334155;
+      height: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-fill {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      height: 100%;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .progress-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .stamps-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stamp-slot {
+      aspect-ratio: 1;
+      background: rgba(255, 255, 255, 0.03);
+      border: 2px dashed #475569;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .stamp-slot:hover {
+      border-color: var(--primary);
+    }
+
+    .stamp-slot.active {
+      background: var(--primary);
+      border-style: solid;
+      border-color: #60a5fa;
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+    }
+
+    .stamp-slot.reward {
+      border-color: var(--accent);
+      background: rgba(245, 158, 11, 0.1);
+    }
+
+    .stamp-slot.reward.active {
+      background: var(--accent);
+      border-color: #fde047;
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.6);
+    }
+
+    .stamp-number {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .stamp-slot.active .stamp-number {
+      color: #fff;
+    }
+
+    .stamp-icon {
+      font-size: 18px;
+      margin-top: 2px;
+    }
+
+    .reward-banner {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      font-size: 13px;
+      color: #fef08a;
+      margin-bottom: 20px;
+    }
+
+    .footer-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-reset {
+      background: #334155;
+      color: var(--text);
+    }
+
+    .btn-contact {
+      background: #22c55e;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loyalty-card">
+    <div class="header">
+      <div class="brand-title">🐾 SNOOPY PLUS</div>
+      <span class="badge-vip">Tarjeta de Fidelidad</span>
+    </div>
+
+    <div class="client-info">
+      <p>Cliente VIP: <span id="client-name">Cliente Snoopy</span></p>
+      <p>Código ID: <span id="client-id">#SNP-2026</span></p>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-text" id="progress-text">0 de 10 Sellos</div>
+    </div>
+
+    <div class="stamps-grid" id="stamps-grid"></div>
+
+    <div class="reward-banner">
+      🎁 <strong>Recompensa:</strong> Completa 10 renovaciones a tiempo y obtén <strong>1 MES TOTALMENTE GRATIS</strong>.
+    </div>
+
+    <div class="footer-actions">
+      <button class="btn btn-reset" onclick="resetStamps()">Reiniciar</button>
+      <a href="https://wa.me/" target="_blank" class="btn btn-contact">Renovar por WhatsApp</a>
+    </div>
+  </div>
+
+  <script>
+    const TOTAL_STAMPS = 10;
+    let stamps = JSON.parse(localStorage.getItem('snoopy_stamps')) || Array(TOTAL_STAMPS).fill(false);
+
+    const grid = document.getElementById('stamps-grid');
+    const fill = document.getElementById('progress-fill');
+    const text = document.getElementById('progress-text');
+
+    function render() {
+      grid.innerHTML = '';
+      let activeCount = stamps.filter(Boolean).length;
+
+      stamps.forEach((active, index) => {
+        const slot = document.createElement('div');
+        const isReward = index === TOTAL_STAMPS - 1;
+        
+        slot.className = `stamp-slot ${active ? 'active' : ''} ${isReward ? 'reward' : ''}`;
+        slot.onclick = () => toggleStamp(index);
+
+        let icon = isReward ? '🎁' : (active ? '🐾' : '⭕');
+
+        slot.innerHTML = `
+          <span class="stamp-number">${index + 1}</span>
+          <span class="stamp-icon">${icon}</span>
+        `;
+
+        grid.appendChild(slot);
+      });
+
+      const percentage = (activeCount / TOTAL_STAMPS) * 100;
+      fill.style.width = `${percentage}%`;
+      text.innerText = `${activeCount} de ${TOTAL_STAMPS} Sellos (${percentage}%)`;
+
+      localStorage.setItem('snoopy_stamps', JSON.stringify(stamps));
+    }
+
+    function toggleStamp(index) {
+      stamps[index] = !stamps[index];
+      render();
+    }
+
+    function resetStamps() {
+      if (confirm('¿Deseas reiniciar los sellos de esta tarjeta?')) {
+        stamps = Array(TOTAL_STAMPS).fill(false);
+        render();
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>
